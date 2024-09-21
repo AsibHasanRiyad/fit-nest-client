@@ -12,7 +12,7 @@ export function Category() {
   return (
     <div>
       <Header header="Shop by Category" description="" />
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="px-8 mx-auto max-w-7xl">
         <HoverEffect className=" mt-14" items={projects} />
       </div>
     </div>

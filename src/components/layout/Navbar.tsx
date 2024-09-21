@@ -11,15 +11,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-third max-w-7xl mx-auto">
-      <div className="flex flex-wrap items-center justify-between mx-auto p-2">
+    <nav className="container mx-auto bg-third">
+      <div className="flex flex-wrap items-center justify-between py-2 mx-auto">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} className="h-16" alt="Logo" />
         </a>
         <button
           onClick={toggleMobileMenu}
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden focus:outline-none focus:ring-2 text-gray-400 focus:ring-gray-600"
+          className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-400 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-600"
           aria-controls="navbar-dropdown"
           aria-expanded={isMobileMenuOpen}
         >
@@ -46,7 +46,7 @@ const Navbar = () => {
           } w-full md:block md:w-auto md:mr-10`}
           id="navbar-dropdown"
         >
-          <ul className="flex flex-col items-center font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+          <ul className="flex flex-col items-center p-4 mt-4 font-medium border rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li>
               <NavLink
                 to="/"

@@ -11,7 +11,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 mx-auto ",
+        "grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto ",
         className
       )}
     >
@@ -36,22 +36,22 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input  p-4 h-full  bg-black border border-transparent justify-between flex flex-col space-y-4",
+        "row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input  p-4 h-full   bg-secondary/80 border border-transparent justify-between flex flex-col space-y-4",
         className
       )}
     >
       <img
-        className="w-full h-64 rounded-xl overflow-hidden object-cover"
+        className="object-cover w-full overflow-hidden h-full md:h-[250px] rounded-xl"
         src={header}
         alt=""
       />
-      <div className="group-hover/bento:translate-x-2 transition duration-200">
+      <div className="transition duration-200 group-hover/bento:translate-x-2">
         {icon}
-        <div className="font-sans font-bold text-third  mb-2 mt-2">{title}</div>
-        <div className="font-sans font-normal text-third text-xs ">
+        <div className="mt-2 mb-2 font-sans font-bold text-third">{title}</div>
+        <div className="font-sans text-xs font-normal text-third ">
           {description}
         </div>
-        <div className=" flex justify-end">
+        <div className="flex justify-end ">
           <Button className=" text-xs bg-primary p-0 px-3 py-1.5 h-fit mt-4">
             View Details
           </Button>

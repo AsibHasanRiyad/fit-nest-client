@@ -4,12 +4,12 @@ import { Button } from "../ui/button";
 
 export function FeaturedProducts() {
   return (
-    <div className=" mt-10">
+    <div className="mt-10 ">
       <Header
         header="Featured Products"
         description="Discover our handpicked selection of cutting-edge fitness equipment designed to elevate your workout experience."
       />
-      <BentoGrid className="container max-w-5xl mx-auto mt-14 ">
+      <BentoGrid className="container mx-auto max-w-7xl mt-14 ">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
@@ -24,7 +24,7 @@ export function FeaturedProducts() {
           />
         ))}
       </BentoGrid>
-      <div className=" flex justify-center items-center py-10">
+      <div className="flex items-center justify-center py-10 ">
         <Button className=" bg-primary hover:bg-primary/90">See More</Button>
       </div>
     </div>

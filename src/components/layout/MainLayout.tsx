@@ -4,9 +4,11 @@ import Footer from "./Footer";
 
 const MainLayout = () => {
   return (
-    <div className=" bg-third overflow-hidden">
+    <div className="overflow-hidden  bg-third">
       <Navbar />
-      <Outlet />
+      <div className="min-h-screen ">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

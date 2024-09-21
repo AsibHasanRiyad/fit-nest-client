@@ -6,9 +6,6 @@ export function TypewriterEffectSmoothDemo() {
       text: "Unleash",
     },
     {
-      text: "Your",
-    },
-    {
       text: "Potential",
     },
     {
@@ -20,7 +17,7 @@ export function TypewriterEffectSmoothDemo() {
     },
   ];
   return (
-    <div className="flex flex-col flex-wrap items-center justify-center  mt-10  ">
+    <div className="flex flex-col flex-wrap items-center justify-center mt-10 ">
       <TypewriterEffectSmooth words={words} />
     </div>
   );
