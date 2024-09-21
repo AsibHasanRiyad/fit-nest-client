@@ -41,7 +41,7 @@ export const BentoGridItem = ({
       )}
     >
       <img
-        className=" w-full  rounded-xl overflow-hidden"
+        className="w-full h-64 rounded-xl overflow-hidden object-cover"
         src={header}
         alt=""
       />
