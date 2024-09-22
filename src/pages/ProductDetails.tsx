@@ -4,10 +4,11 @@ import { Minus, Plus } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BiCartAdd } from "react-icons/bi";
+import ProductDetailsSkeleton from "@/components/shared/ProductDetailsSkeleton";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { data } = useGetSingleProductQuery(id);
+  const { data, isLoading, isFetching } = useGetSingleProductQuery(id);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -18,7 +19,9 @@ const ProductDetails = () => {
       setQuantity(quantity - 1);
     }
   };
-
+  if (isLoading || isFetching) {
+    return <ProductDetailsSkeleton />;
+  }
   return (
     <div className="container mx-auto my-10">
       <section className="py-24">

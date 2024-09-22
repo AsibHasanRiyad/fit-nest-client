@@ -25,7 +25,9 @@ export function FeaturedProducts() {
         ))}
       </BentoGrid>
       <div className="flex items-center justify-center py-10 ">
-        <Button className=" bg-primary hover:bg-primary/90">See More</Button>
+        <Button className=" bg-primary text-third hover:bg-primary/90">
+          See More
+        </Button>
       </div>
     </div>
   );

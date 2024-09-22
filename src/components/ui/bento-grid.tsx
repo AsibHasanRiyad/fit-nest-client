@@ -52,7 +52,7 @@ export const BentoGridItem = ({
           {description}
         </div>
         <div className="flex justify-end ">
-          <Button className=" text-xs bg-primary p-0 px-3 py-1.5 h-fit mt-4">
+          <Button className=" text-xs text-third bg-primary p-0 px-3 py-1.5 h-fit mt-4">
             View Details
           </Button>
         </div>
