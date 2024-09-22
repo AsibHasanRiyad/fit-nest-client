@@ -7,6 +7,7 @@ export type TCartItem = {
   name: string;
   price: number;
   quantity: number;
+  image?: string;
 };
 
 export interface TCartState {

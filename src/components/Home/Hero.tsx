@@ -7,7 +7,7 @@ const Hero = () => {
     <>
       <div className=" bg-third min-h-[calc(100vh-175px)] pt-10 lg:pt-0 px-4 md:px-8 flex justify-center items-center">
         <div className="container mx-auto">
-          <div className="-mx-4 flex flex-wrap">
+          <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 lg:w-5/12">
               <div>
                 <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-secondary  sm:text-[42px] lg:text-[40px] xl:text-5xl">
@@ -23,16 +23,16 @@ const Hero = () => {
                   <li>
                     <a
                       href="/#"
-                      className="inline-flex gap-3 items-center justify-center rounded-md bg-primary text-third px-6 py-3 text-center text-base font-medium  hover:bg-blue-dark lg:px-7"
+                      className="inline-flex items-center justify-center gap-3 px-6 py-3 text-base font-medium text-center rounded-md bg-primary text-third hover:bg-blue-dark lg:px-7"
                     >
                       Explore
-                      <ArrowRightCircle className=" h-5 w-5" />
+                      <ArrowRightCircle className="w-5 h-5 " />
                     </a>
                   </li>
                   <li>
                     <a
                       href="/#"
-                      className="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-secondary hover:text-primary "
+                      className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-secondary hover:text-primary "
                     >
                       <span className="mr-2">
                         <CloudIcon />

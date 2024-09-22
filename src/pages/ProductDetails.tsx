@@ -35,6 +35,7 @@ const ProductDetails = () => {
       quantity,
     };
     dispatch(addToCart(product));
+    setQuantity(0);
     toast.success("Product added to the cart");
   };
 
