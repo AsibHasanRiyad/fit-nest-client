@@ -14,6 +14,7 @@ export function SelectCategory({
   onCategoryChange,
 }: {
   selectedCategories: string[];
+  onCategoryChange: (category: string, isChecked: boolean) => void;
 }) {
   return (
     <div className="space-y-2 ">
@@ -24,7 +25,7 @@ export function SelectCategory({
             id={category}
             checked={selectedCategories.includes(category)}
             onCheckedChange={(isChecked) =>
-              onCategoryChange(category, isChecked)
+              onCategoryChange(category, isChecked as boolean)
             }
           />
           <Label className=" text-primary/90" htmlFor={category}>

@@ -64,7 +64,14 @@ const Products = () => {
     setPage(1);
   };
 
-  console.log(products, "products");
+  const handleClearFilters = () => {
+    setPage(1);
+    setSortBy("price");
+    setMinPrice(0);
+    setMaxPrice(1000);
+    setSearchTerm("");
+    setSelectedCategories([]); // Clear selected categories
+  };
 
   return (
     <div className="container min-h-screen px-4 mx-auto my-10 md:px-10">
@@ -106,6 +113,14 @@ const Products = () => {
               selectedCategories={selectedCategories}
               onCategoryChange={handleCategoryChange}
             />
+          </div>
+          <div className="flex justify-end w-full ">
+            <Button
+              className="text-white "
+              onClick={() => handleClearFilters()}
+            >
+              Reset
+            </Button>
           </div>
         </div>
 
