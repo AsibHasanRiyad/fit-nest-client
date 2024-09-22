@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 export function ProductCardSkeleton() {
   return (
     <div>
-      <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 ">
+      <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-4">
         <div className="relative z-10">
           {/* Placeholder for image */}
-          <div className="w-full h-64 bg-neutral-700 rounded-2xl animate-pulse"></div>
+          <div className="w-full h-40 bg-neutral-700 rounded-2xl animate-pulse"></div>
 
           <motion.div
             className="relative z-20 py-4"

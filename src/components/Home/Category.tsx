@@ -23,7 +23,7 @@ export const projects: Project[] = [
     title: "Treadmill",
     description:
       "An essential cardio machine that helps improve cardiovascular fitness and endurance, suitable for running or walking indoors.",
-    link: "https://example.com/treadmill",
+    link: "/products?category=Treadmill",
     image:
       "https://i.ibb.co.com/GJDCJrN/youcef-chenzer-Zwrrfoh4-VSM-unsplash.jpg",
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     title: "Dumbbells",
     description:
       "Versatile weights that can be used for a variety of strength training exercises, perfect for home workouts and outside too.",
-    link: "https://example.com/dumbbells",
+    link: "/products?category=Dumbbells",
     image:
       "https://i.ibb.co.com/9HZrc6J/vd-photography-v9-QOeuh6qog-unsplash.jpg",
   },
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     title: "Resistance Bands",
     description:
       "Portable bands that add resistance to your workouts, perfect for strength training, stretching, and rehabilitation exercises.",
-    link: "https://example.com/resistance-bands",
+    link: "/products?category=Resistance Bands",
     image:
       "https://i.ibb.co.com/0VG5rpd/kelly-sikkema-IZOAOjvwha-M-unsplash.jpg",
   },
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: "Weight Plates",
     description:
       "A versatile weight that combines the benefits of cardio and strength training, ideal for full-body workouts.",
-    link: "https://example.com/kettlebell",
+    link: "/products?category=Weight Plates",
     image:
       "https://i.ibb.co.com/3NZD7Lr/victor-freitas-Jb-I04n-Yfa-Jk-unsplash.jpg",
   },
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     title: "Exercise Bike",
     description:
       "A great option for low-impact cardiovascular workouts, perfect for building endurance and burning calories.",
-    link: "https://example.com/exercise-bike",
+    link: "/products?category=Exercise Bike",
     image:
       "https://i.ibb.co.com/T8FQN9f/gastro-editorial-v-Cz-RMEDMZus-unsplash.jpg",
   },
