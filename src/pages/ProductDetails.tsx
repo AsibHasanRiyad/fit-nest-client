@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BiCartAdd } from "react-icons/bi";
 import ProductDetailsSkeleton from "@/components/shared/ProductDetailsSkeleton";
-import { useAppDispatch } from "@/redux/hook";
-import { addToCart } from "@/redux/features/CartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { addToCart, selectCart } from "@/redux/features/CartSlice";
 import { toast } from "sonner";
 
 const ProductDetails = () => {
@@ -16,7 +16,17 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useAppDispatch();
 
+  const cart = useAppSelector(selectCart);
+
+  const cartItem = cart.items.find((item) => item.id === id);
+  const currentCartQuantity = cartItem ? cartItem.quantity : 0;
+
   const handleAddToCart = () => {
+    if (quantity + currentCartQuantity > data.data.stockQuantity) {
+      toast.error("Cannot add more than available stock");
+      return;
+    }
+
     const product = {
       id: data.data._id,
       name: data.data.name,
@@ -25,19 +35,25 @@ const ProductDetails = () => {
       quantity,
     };
     dispatch(addToCart(product));
-    toast.success("Product is added to the cart");
+    toast.success("Product added to the cart");
   };
 
   const handleQuantityChange = (type: string) => {
     if (type === "increment") {
-      setQuantity(quantity + 1);
+      if (quantity + currentCartQuantity < data?.data?.stockQuantity) {
+        setQuantity(quantity + 1);
+      } else {
+        toast.error("Quantity exceeds available stock");
+      }
     } else if (type === "decrement" && quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
+
   if (isLoading || isFetching) {
     return <ProductDetailsSkeleton />;
   }
+
   return (
     <div className="container mx-auto my-10">
       <section className="py-24">
@@ -99,10 +115,13 @@ const ProductDetails = () => {
                   </div>
                   {/* Add to Cart Button */}
                   <Button
-                    onClick={() => handleAddToCart()}
-                    className="flex gap-2.5 text-white "
+                    onClick={handleAddToCart}
+                    className="flex gap-2.5 text-white"
+                    disabled={
+                      quantity + currentCartQuantity > data?.data?.stockQuantity
+                    } // Disable if quantity exceeds stock
                   >
-                    <BiCartAdd className="w-7 h-7 " />
+                    <BiCartAdd className="w-7 h-7" />
                     Add to Cart
                   </Button>
                 </div>

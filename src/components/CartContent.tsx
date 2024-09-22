@@ -1,6 +1,23 @@
-import { decreaseQuantity, increaseQuantity } from "@/redux/features/CartSlice";
+import { useGetSingleProductQuery } from "@/redux/api/ProductsApi";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "@/redux/features/CartSlice";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Button } from "./ui/button";
+import { DialogDescription } from "@radix-ui/react-dialog";
+
 export type TCart = {
   id: string;
   name: string;
@@ -12,15 +29,31 @@ export type TCart = {
 const CartContent = ({ cartData }: { cartData: TCart }) => {
   const dispatch = useDispatch();
 
+  const { data } = useGetSingleProductQuery(cartData.id);
+  const availableQuantity = data?.data?.stockQuantity;
+
   const handleIncrease = () => {
-    dispatch(increaseQuantity(cartData.id));
+    if (cartData.quantity < availableQuantity) {
+      dispatch(increaseQuantity(cartData.id));
+    } else {
+      toast.error(`Cannot add more than ${availableQuantity} items in stock`);
+    }
   };
 
+  // Handle decreasing quantity
   const handleDecrease = () => {
-    dispatch(decreaseQuantity(cartData.id));
+    if (cartData.quantity > 1) {
+      dispatch(decreaseQuantity(cartData.id));
+    } else {
+      toast.error("Quantity can't be less than 1");
+    }
+  };
+  // delete cart data
+  const handleRemove = () => {
+    dispatch(removeFromCart(cartData.id));
+    toast.success(`${cartData.name} has been removed from the cart`);
   };
 
-  console.log(cartData);
   return (
     <div className="flex flex-col w-full px-6 space-y-4 overflow-y-scroll dark:bg-gray-900 dark:text-gray-100">
       <ul className="flex flex-col divide-y dark:divide-gray-700">
@@ -37,11 +70,12 @@ const CartContent = ({ cartData }: { cartData: TCart }) => {
                   <h3 className="font-semibold sm:pr-8">{cartData?.name}</h3>
 
                   <p className="text-sm dark:text-gray-400">
-                    {cartData?.price}
+                    ${cartData?.price}
                   </p>
-                  {/* quantity */}
+
+                  {/* Quantity */}
                   <div className="flex items-center border-gray-400 w-fit">
-                    <button onClick={() => handleDecrease()}>
+                    <button onClick={handleDecrease}>
                       <Minus className="w-4" />
                     </button>
                     <input
@@ -50,19 +84,40 @@ const CartContent = ({ cartData }: { cartData: TCart }) => {
                       value={cartData?.quantity}
                       readOnly
                     />
-                    <button onClick={() => handleIncrease()}>
+                    <button onClick={handleIncrease}>
                       <Plus className="w-4" />
                     </button>
                   </div>
+
+                  {/* Display available stock */}
+                  <p className="text-sm text-gray-500">
+                    In stock: {availableQuantity}
+                  </p>
                 </div>
               </div>
               <div className="flex text-sm divide-x">
-                <button
-                  type="button"
-                  className="flex items-center px-2 py-1 pl-0 space-x-1"
-                >
-                  <Trash2 />
-                </button>
+                <Dialog>
+                  <DialogTrigger>
+                    <Trash2 />
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Are you absolutely sure?</DialogTitle>
+                      <DialogDescription>
+                        You won't be able to reverse this action. Click delete
+                        to remove this product from cart
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <Button
+                        className=" text-third"
+                        onClick={() => handleRemove()}
+                      >
+                        Delete
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </div>

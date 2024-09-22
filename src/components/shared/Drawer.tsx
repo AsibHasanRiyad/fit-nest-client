@@ -22,6 +22,11 @@ export function CartSidebar() {
     0
   );
 
+  const totalAdded = cardData?.items?.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -30,7 +35,7 @@ export function CartSidebar() {
             <ShoppingCart />
           </Button>
           <span className="absolute  -top-1 -right-4 bg-primary w-5 h-5 flex justify-center items-center text-third text-[10px] rounded-full ">
-            4
+            {totalAdded}
           </span>
         </div>
       </SheetTrigger>
@@ -49,7 +54,9 @@ export function CartSidebar() {
                 <div className="space-y-1 text-right">
                   <p>
                     Total amount:
-                    <span className="font-semibold">$ {totalAmount}</span>
+                    <span className="font-semibold">
+                      $ {totalAmount.toFixed(3)}
+                    </span>
                   </p>
                 </div>
                 <div className="flex justify-end space-x-4">
@@ -60,7 +67,9 @@ export function CartSidebar() {
               </div>
             </div>
           ) : (
-            <p>No Data Available</p>
+            <p className=" flex h-[70vh] justify-center text-xl text-primary items-center">
+              No Data Available
+            </p>
           )}
         </SheetHeader>
 
