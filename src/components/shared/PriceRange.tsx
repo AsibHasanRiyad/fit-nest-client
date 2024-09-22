@@ -13,7 +13,7 @@ const PriceRange = ({ onPriceRangeChange }: PriceRangeProps) => {
   }, [values, onPriceRangeChange]);
 
   return (
-    <div className="w-48 2xl:w-[250px] mr-4 space-y-5 md:mr-0 sm:w-72">
+    <div className="w-32 2xl:w-[250px] mr-4 space-y-5 md:mr-0 sm:w-72">
       <DualRangeSlider
         label={(value) => <span>{value}</span>}
         value={values}

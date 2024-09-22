@@ -10,14 +10,21 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { selectCart } from "@/redux/features/CartSlice";
+import { useAppSelector } from "@/redux/hook";
 import { ShoppingCart } from "lucide-react";
 
 export function CartSidebar() {
+  const cardData = useAppSelector(selectCart);
+
+  const check = () => {
+    console.log(cardData, "cart data");
+  };
   return (
     <Sheet>
       <SheetTrigger asChild>
         <div className="relative">
-          <Button className="bg-transparent hover:bg-transparent text-primary p-0 m-0">
+          <Button className="p-0 m-0 bg-transparent hover:bg-transparent text-primary">
             <ShoppingCart />
           </Button>
           <span className="absolute  -top-1 -right-4 bg-primary w-5 h-5 flex justify-center items-center text-third text-[10px] rounded-full ">
@@ -30,7 +37,7 @@ export function CartSidebar() {
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
-            Make changes to your profile here. Click save when you're done.
+            <Button onClick={() => check()}>Hello</Button>
           </SheetDescription>
         </SheetHeader>
 

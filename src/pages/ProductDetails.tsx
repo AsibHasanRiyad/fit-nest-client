@@ -5,12 +5,27 @@ import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BiCartAdd } from "react-icons/bi";
 import ProductDetailsSkeleton from "@/components/shared/ProductDetailsSkeleton";
+import { useAppDispatch } from "@/redux/hook";
+import { addToCart } from "@/redux/features/CartSlice";
+import { toast } from "sonner";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching } = useGetSingleProductQuery(id);
 
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useAppDispatch();
+
+  const handleAddToCart = () => {
+    const product = {
+      id: data.data._id,
+      name: data.data.name,
+      price: data.data.price,
+      quantity,
+    };
+    dispatch(addToCart(product));
+    toast.success("Product is added to the cart");
+  };
 
   const handleQuantityChange = (type: string) => {
     if (type === "increment") {
@@ -46,11 +61,17 @@ const ProductDetails = () => {
                     {data?.data?.category}
                   </p>
                 </div>
-                <div className="flex items-center mb-8">
-                  <h5 className="text-2xl font-semibold text-gray-900">
-                    ${data?.data?.price}
-                  </h5>
-                </div>
+
+                <h5 className="mb-8 text-2xl font-semibold text-gray-900">
+                  ${data?.data?.price}
+                </h5>
+                <h5 className="mb-2 font-semibold text-gray-900 ">
+                  Available Quantity:{" "}
+                  <span className=" text-primary">
+                    {data?.data?.stockQuantity}
+                  </span>
+                </h5>
+
                 <p className="pb-10">{data?.data?.description}</p>
                 {/* Quantity and Add to Cart */}
                 <div className="flex items-center gap-3 mb-8">
@@ -76,7 +97,10 @@ const ProductDetails = () => {
                     </button>
                   </div>
                   {/* Add to Cart Button */}
-                  <Button className="flex gap-2.5 text-white ">
+                  <Button
+                    onClick={() => handleAddToCart()}
+                    className="flex gap-2.5 text-white "
+                  >
                     <BiCartAdd className="w-7 h-7 " />
                     Add to Cart
                   </Button>

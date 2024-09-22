@@ -80,7 +80,7 @@ const Products = () => {
           All Products
         </h1>
       </div>
-      <div className="grid grid-cols-5">
+      <div className="grid grid-cols-1 2xl:grid-cols-5">
         {/* Search and filter section */}
         <div className="pr-0 xl:pr-10 space-y-3 mb-10 col-span-1 2xl:min-w-[250px]">
           <div className="flex items-center w-full gap-2 ">
