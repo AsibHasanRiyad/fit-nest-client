@@ -21,6 +21,7 @@ const ProductDetails = () => {
       id: data.data._id,
       name: data.data.name,
       price: data.data.price,
+      image: data.data.image,
       quantity,
     };
     dispatch(addToCart(product));

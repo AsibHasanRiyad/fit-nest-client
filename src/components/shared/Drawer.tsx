@@ -13,13 +13,15 @@ import {
 import { selectCart } from "@/redux/features/CartSlice";
 import { useAppSelector } from "@/redux/hook";
 import { ShoppingCart } from "lucide-react";
+import CartContent from "../CartContent";
 
 export function CartSidebar() {
   const cardData = useAppSelector(selectCart);
+  const totalAmount = cardData?.items?.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
-  const check = () => {
-    console.log(cardData, "cart data");
-  };
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -33,17 +35,38 @@ export function CartSidebar() {
         </div>
       </SheetTrigger>
 
-      <SheetContent>
+      <SheetContent className=" min-w-[400px] p-0 py-10 px-4 overflow-scroll">
         <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>
-            <Button onClick={() => check()}>Hello</Button>
-          </SheetDescription>
+          <SheetTitle>Your Cart</SheetTitle>
+          <SheetDescription></SheetDescription>
+          {cardData?.items?.length > 0 ? (
+            <div>
+              {cardData.items.map((cart) => (
+                <CartContent key={cart.id} cartData={cart} />
+              ))}
+              <hr />
+              <div className="py-4 space-y-4 ">
+                <div className="space-y-1 text-right">
+                  <p>
+                    Total amount:
+                    <span className="font-semibold">$ {totalAmount}</span>
+                  </p>
+                </div>
+                <div className="flex justify-end space-x-4">
+                  <Button className="p-8 px-2 py-0 my-0 text-xs text-white h-7">
+                    Checkout
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <p>No Data Available</p>
+          )}
         </SheetHeader>
 
         <SheetFooter>
           <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
+            {/* <Button type="submit">Save changes</Button> */}
           </SheetClose>
         </SheetFooter>
       </SheetContent>
