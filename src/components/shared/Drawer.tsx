@@ -14,6 +14,7 @@ import { selectCart } from "@/redux/features/CartSlice";
 import { useAppSelector } from "@/redux/hook";
 import { ShoppingCart } from "lucide-react";
 import CartContent from "../CartContent";
+import { Link } from "react-router-dom";
 
 export function CartSidebar() {
   const cardData = useAppSelector(selectCart);
@@ -60,9 +61,11 @@ export function CartSidebar() {
                   </p>
                 </div>
                 <div className="flex justify-end space-x-4">
-                  <Button className="p-8 px-2 py-0 my-0 text-xs text-white h-7">
-                    Checkout
-                  </Button>
+                  <Link to={"/checkout"}>
+                    <Button className="p-8 px-2 py-0 my-0 text-xs text-white h-7">
+                      Checkout
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

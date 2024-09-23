@@ -55,7 +55,7 @@ const CartContent = ({ cartData }: { cartData: TCart }) => {
   };
 
   return (
-    <div className="flex flex-col w-full px-6 space-y-4 overflow-y-scroll dark:bg-gray-900 dark:text-gray-100">
+    <div className="flex flex-col w-full px-6 space-y-4 dark:bg-gray-900 dark:text-gray-100">
       <ul className="flex flex-col divide-y dark:divide-gray-700">
         <li className="flex flex-col items-center py-6 sm:justify-between">
           <div className="flex w-full space-x-2 sm:space-x-4">

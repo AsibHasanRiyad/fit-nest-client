@@ -2,12 +2,12 @@ import { baseApi } from "../api/baseApi";
 
 const OrderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createBooking: builder.mutation({
-      query: (bookingInfo) => {
+    createOrder: builder.mutation({
+      query: (orderInfo) => {
         return {
           url: "/orders/create-order",
           method: "POST",
-          body: bookingInfo,
+          body: orderInfo,
         };
       },
       invalidatesTags: [],
@@ -15,4 +15,4 @@ const OrderApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateBookingMutation } = OrderApi;
+export const { useCreateOrderMutation } = OrderApi;

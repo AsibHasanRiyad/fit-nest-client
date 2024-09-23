@@ -12,3 +12,21 @@ export interface Product {
   category: string;
   __v: number;
 }
+export type TUser = {
+  name: string;
+  phone: string;
+  address: string;
+  email: string;
+};
+
+export type TOrderProduct = {
+  productId: string;
+  quantity: number;
+};
+
+export type TOrder = {
+  name: string;
+  user: TUser;
+  products: TOrderProduct[];
+  totalPrice: number;
+};
