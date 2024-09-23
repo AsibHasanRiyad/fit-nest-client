@@ -4,6 +4,7 @@ import Hero from "../assets/hero.jpg";
 import OurTeam from "@/components/About/OurTeam";
 import { Testimonial } from "@/components/About/Testimonial";
 import Header from "@/components/shared/Title";
+import Contact from "@/components/About/Contact";
 const AboutUs = () => {
   return (
     <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -205,6 +206,7 @@ const AboutUs = () => {
       <div className="flex justify-center gap-10 mt-10 ">
         <Testimonial />
       </div>
+      <Contact />
     </div>
   );
 };
