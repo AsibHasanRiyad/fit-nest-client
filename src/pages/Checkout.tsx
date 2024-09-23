@@ -1,5 +1,5 @@
-import { selectCart } from "@/redux/features/CartSlice";
-import { useAppSelector } from "@/redux/hook";
+import { clearCart, selectCart } from "@/redux/features/CartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import {
   Banknote,
@@ -12,10 +12,14 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { useCreateOrderMutation } from "@/redux/api/OrderApi";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const cardData = useAppSelector(selectCart);
   const [createOrder, { isLoading }] = useCreateOrderMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const products = cardData.items.map((item) => ({
     productId: item.id,
     quantity: item.quantity,
@@ -37,17 +41,26 @@ const Checkout = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const orderData = {
-      user: {
-        name: data.name,
-        phone: data.phone,
-        email: data.email,
-        address: data.address,
-      },
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      address: data.address,
+
       products,
       totalPrice: totalAmount.toFixed(2),
     };
-    const res = await createOrder(orderData);
-    console.log(res);
+
+    try {
+      const res = await createOrder(orderData).unwrap();
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message);
+        navigate("/");
+        dispatch(clearCart());
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
   return (
@@ -245,7 +258,13 @@ const Checkout = () => {
               type="submit"
               className="w-full px-6 py-2 mt-4 mb-8 font-medium text-white rounded-md bg-primary"
             >
-              Place Order
+              Place Order{" "}
+              {isLoading && (
+                <p
+                  className="inline-block ml-4 h-4 w-4 animate-spin rounded-full border-4 text-gray-100 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                  role="status"
+                ></p>
+              )}
             </button>
           </form>
         </div>
