@@ -84,6 +84,18 @@ const Navbar = () => {
                 About Us
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/product-management"
+                className={({ isActive }) =>
+                  `block py-2 px-3 rounded md:p-0 ${
+                    isActive ? "text-primary" : "text-secondary"
+                  }`
+                }
+              >
+                Product Management
+              </NavLink>
+            </li>
 
             <li>
               <CartSidebar />
