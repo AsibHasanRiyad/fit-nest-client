@@ -1,14 +1,34 @@
 import { ArrowRightCircle, CloudIcon } from "lucide-react";
 import heroImage from "../../assets/hero.jpg";
 import { TypewriterEffectSmoothDemo } from "./TypeEffect";
+import { motion } from "framer-motion";
 
 const Hero = () => {
+  const variants = (direction: string) => ({
+    hidden: {
+      opacity: 0,
+      x: direction === "left" ? -300 : direction === "right" ? 300 : 0,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 1, ease: "linear" },
+    },
+  });
   return (
     <div>
-      <div className="  min-h-[calc(100vh-175px)] pt-10 lg:pt-0 px-4 md:px-8 flex justify-center items-center">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        className="  min-h-[calc(100vh-175px)] pt-10 lg:pt-0 px-4 md:px-8 flex justify-center items-center"
+      >
         <div className="container mx-auto">
           <div className="flex flex-wrap -mx-4">
-            <div className="w-full px-4 lg:w-5/12">
+            <motion.div
+              variants={variants("left")}
+              className="w-full px-4 lg:w-5/12"
+            >
               <div>
                 <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-secondary  sm:text-[42px] lg:text-[40px] xl:text-5xl">
                   Transform Your Workout, Transform Your Life
@@ -45,9 +65,12 @@ const Hero = () => {
               <div>
                 <TypewriterEffectSmoothDemo />
               </div>
-            </div>
+            </motion.div>
             <div className="hidden px-4 lg:block lg:w-1/12"></div>
-            <div className="w-full px-4 lg:w-6/12">
+            <motion.div
+              variants={variants("right")}
+              className="w-full px-4 lg:w-6/12"
+            >
               <div className="lg:ml-auto lg:text-right">
                 <div className="relative z-10 inline-block pt-11 lg:pt-0">
                   <img
@@ -92,10 +115,10 @@ const Hero = () => {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
