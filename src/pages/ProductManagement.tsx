@@ -9,14 +9,15 @@ import {
 import Header from "@/components/shared/Title";
 import Loader from "@/components/shared/Loader";
 import ProductTable from "@/components/ProductManagement/ProductTable";
+import { useGetAllProductsQuery } from "@/redux/api/ProductsApi";
+import { Product } from "@/types";
 
 const ProductManagement = () => {
-  // const { data, isLoading, isFetching, refetch } =
-  //   useGetAllServicesQuery(undefined);
-
-  // if (isLoading || isFetching) {
-  //   return <Loader />;
-  // }
+  const { data, isLoading } = useGetAllProductsQuery(undefined);
+  console.log(data);
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className="overflow-scroll max-w-[100vw] lg:px-10 hide-scrollbar">
       <div className="mt-5 ">
@@ -30,16 +31,17 @@ const ProductManagement = () => {
           <TableRow className=" hover:bg-transparent">
             <TableHead>Service Name</TableHead>
             <TableHead>Details</TableHead>
-            <TableHead>Duration</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>Stock Quantity</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Edit</TableHead>
             <TableHead>Delete</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {/* {data?.data?.map((service) => (
-            <ProductTable service={service} key={service._id} />
-          ))} */}
+          {data?.data?.result?.map((product: Product) => (
+            <ProductTable product={product} key={product._id} />
+          ))}
         </TableBody>
       </Table>
     </div>

@@ -3,15 +3,15 @@ import { baseApi } from "../api/baseApi";
 
 const ServiceApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createBooking: builder.mutation({
-      query: (bookingInfo) => {
+    createProduct: builder.mutation({
+      query: (productInfo) => {
         return {
-          url: "/bookings",
+          url: "/products/create-product",
           method: "POST",
-          body: bookingInfo,
+          body: productInfo,
         };
       },
-      invalidatesTags: [],
+      invalidatesTags: ["products"],
     }),
     getAllProducts: builder.query({
       query: (args) => {
@@ -27,7 +27,7 @@ const ServiceApi = baseApi.injectEndpoints({
           params: params,
         };
       },
-      providesTags: [],
+      providesTags: ["products"],
     }),
     getSingleProduct: builder.query({
       query: (payload) => {
@@ -37,11 +37,33 @@ const ServiceApi = baseApi.injectEndpoints({
         };
       },
     }),
+    deleteProduct: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/products/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["products"],
+    }),
+    updateProduct: builder.mutation({
+      query: (payload) => {
+        const { _id, ...data } = payload;
+        return {
+          url: `/products/${_id}`,
+          method: "PATCH",
+          body: data,
+        };
+      },
+      invalidatesTags: ["products"],
+    }),
   }),
 });
 
 export const {
-  useCreateBookingMutation,
+  useCreateProductMutation,
   useGetAllProductsQuery,
   useGetSingleProductQuery,
+  useDeleteProductMutation,
+  useUpdateProductMutation,
 } = ServiceApi;

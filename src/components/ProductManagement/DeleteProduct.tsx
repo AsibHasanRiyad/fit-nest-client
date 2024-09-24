@@ -8,8 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useDeleteServiceMutation } from "@/redux/features/serviceApi";
-import { Trash } from "lucide-react";
+import { useDeleteProductMutation } from "@/redux/api/ProductsApi";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -20,14 +20,13 @@ export interface DeleteServiceProps {
 export function DeleteProduct({ id }: DeleteServiceProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [open, setOpen] = useState(false);
-  const [deleteService, { isLoading }] = useDeleteServiceMutation();
+  const [deleteService, { isLoading }] = useDeleteProductMutation();
 
   const handleDelete = async (serviceId: string) => {
     try {
       setIsSubmitting(true);
       const res = await deleteService(serviceId);
-      // console.log(res, "Service deleted");
-      // console.log(res?.data?.success);
+
       if (res?.data?.success) {
         toast.success(res?.data?.message);
         setOpen(false);
@@ -46,15 +45,15 @@ export function DeleteProduct({ id }: DeleteServiceProps) {
           className="flex items-center gap-2 cursor-pointer hover:text-primary "
           onClick={() => setOpen(true)}
         >
-          <Trash />
+          <Trash2 />
           Delete
         </div>
       </DialogTrigger>
-      <DialogContent className=" max-w-[380px] rounded-lg md:max-w-[625px] bg-secondary text-text">
+      <DialogContent className=" max-w-[380px] rounded-lg md:max-w-[625px] bg-secondary text-third">
         <DialogHeader>
-          <DialogTitle>Delete Service</DialogTitle>
+          <DialogTitle>Delete Product</DialogTitle>
           <DialogDescription>
-            Click confirm to delete this service.
+            Click confirm to delete this product.
           </DialogDescription>
         </DialogHeader>
 

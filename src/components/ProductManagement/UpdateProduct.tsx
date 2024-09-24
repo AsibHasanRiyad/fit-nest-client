@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,42 +11,31 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { logout } from "@/redux/features/authSlice";
-import { useUpdateServiceMutation } from "@/redux/features/serviceApi";
+import { useUpdateProductMutation } from "@/redux/api/ProductsApi";
+import { Product } from "@/types";
 import { Edit } from "lucide-react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { TService } from "./CreateService";
 
-export function UpdateProduct({ service }: { service: TService }) {
+export function UpdateProduct({ product }: { product: Product }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TService>();
-  const [updateService, { error, isLoading }] = useUpdateServiceMutation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  } = useForm<Product>();
+  const [updateProduct, { isLoading }] = useUpdateProductMutation();
+  const [open, setOpen] = useState(false);
 
-  if ((error as any)?.data?.message === "jwt expired") {
-    dispatch(logout());
-    navigate("/signin");
-  }
-
-  const onSubmit: SubmitHandler<TService> = async (data) => {
+  const onSubmit: SubmitHandler<Product> = async (data) => {
     try {
-      const _id = service._id;
+      const _id = product._id;
       const payload = { ...data, _id };
-      // console.log(payload);
-
-      const res = await updateService(payload).unwrap();
-
-      // console.log(data);
-      // console.log(res);
+      console.log(payload);
+      const res = await updateProduct(payload).unwrap();
       if (res.success) {
         toast.success(res.message);
+        setOpen(false);
       }
     } catch (err) {
       toast.error((err as any)?.data?.message || "Something went wrong");
@@ -53,7 +43,7 @@ export function UpdateProduct({ service }: { service: TService }) {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <div className="flex items-center gap-2 ">
           {" "}
@@ -78,12 +68,12 @@ export function UpdateProduct({ service }: { service: TService }) {
               </Label>
               <Input
                 {...register("name", {
-                  required: "Service name is required",
+                  required: "Product name is required",
                 })}
-                defaultValue={service.name}
+                defaultValue={product.name}
                 type="text"
                 id="name"
-                placeholder="Name of your service"
+                placeholder="Name of your product"
                 className={`${errors.name ? "border-red-500" : ""}`}
               />
               {errors.name && (
@@ -101,7 +91,7 @@ export function UpdateProduct({ service }: { service: TService }) {
                 {...register("description", {
                   required: "Description is required",
                 })}
-                defaultValue={service.description}
+                defaultValue={product.description}
                 id="description"
                 placeholder="Description"
                 className={`${errors.description ? "border-red-500" : ""}`}
@@ -113,11 +103,72 @@ export function UpdateProduct({ service }: { service: TService }) {
               )}
             </div>
             <div className="flex flex-col space-y-4">
+              <Label className="text-white" htmlFor="description">
+                Description :
+              </Label>
+              <Input
+                type="text"
+                {...register("description", {
+                  required: "Description is required",
+                })}
+                defaultValue={product.description}
+                id="description"
+                placeholder="Description"
+                className={`${errors.description ? "border-red-500" : ""}`}
+              />
+              {errors.description && (
+                <span className="text-sm text-red-500">
+                  {errors.description.message}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col space-y-4">
+              <Label className="text-white" htmlFor="description">
+                Category :
+              </Label>
+              <Input
+                type="text"
+                {...register("category", {
+                  required: "Category is required",
+                })}
+                defaultValue={product.category}
+                id="category"
+                placeholder="Category"
+                className={`${errors.category ? "border-red-500" : ""}`}
+              />
+              {errors.category && (
+                <span className="text-sm text-red-500">
+                  {errors.category.message}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col space-y-4">
+              <Label className="text-white" htmlFor="description">
+                Stock Quantity :
+              </Label>
+              <Input
+                type="number"
+                {...register("stockQuantity", {
+                  required: "Stock Quantity is required",
+                  valueAsNumber: true,
+                })}
+                defaultValue={product.stockQuantity}
+                id="stockQuantity"
+                placeholder="Stock Quantity"
+                className={`${errors.stockQuantity ? "border-red-500" : ""}`}
+              />
+              {errors.stockQuantity && (
+                <span className="text-sm text-red-500">
+                  {errors.stockQuantity.message}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col space-y-4">
               <Label className="text-white" htmlFor="price">
                 Price
               </Label>
               <Input
-                defaultValue={service.price}
+                defaultValue={product.price}
                 {...register("price", {
                   required: "Price is required",
                   valueAsNumber: true,
@@ -130,27 +181,6 @@ export function UpdateProduct({ service }: { service: TService }) {
               {errors.price && (
                 <span className="text-sm text-red-500">
                   {errors.price.message}
-                </span>
-              )}
-            </div>
-            <div className="flex flex-col space-y-4">
-              <Label className="text-white" htmlFor="duration">
-                Duration (minutes)
-              </Label>
-              <Input
-                defaultValue={service.duration}
-                type="number"
-                {...register("duration", {
-                  required: "Duration is required",
-                  valueAsNumber: true,
-                })}
-                id="duration"
-                placeholder="Duration"
-                className={`${errors.duration ? "border-red-500" : ""}`}
-              />
-              {errors.duration && (
-                <span className="text-sm text-red-500">
-                  {errors.duration.message}
                 </span>
               )}
             </div>
