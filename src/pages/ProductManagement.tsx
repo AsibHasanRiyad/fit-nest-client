@@ -11,6 +11,7 @@ import Loader from "@/components/shared/Loader";
 import ProductTable from "@/components/ProductManagement/ProductTable";
 import { useGetAllProductsQuery } from "@/redux/api/ProductsApi";
 import { Product } from "@/types";
+import { CreateProduct } from "@/components/ProductManagement/CreateProduct";
 
 const ProductManagement = () => {
   const { data, isLoading } = useGetAllProductsQuery(undefined);
@@ -24,7 +25,7 @@ const ProductManagement = () => {
         <Header header="Product Management" description="" />
       </div>
       <div className="flex justify-end mb-5 lg:mr-14 ">
-        {/* <CreateService refetch={refetch} /> */}
+        <CreateProduct />
       </div>
       <Table className="text-base text-gray-100 ">
         <TableHeader>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,45 +11,29 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { logout } from "@/redux/features/authSlice";
-import { useCreateServiceMutation } from "@/redux/features/serviceApi";
-import { PlusCircleIcon } from "lucide-react";
+import { useCreateProductMutation } from "@/redux/api/ProductsApi";
+import { Product } from "@/types";
+import { BadgePlus } from "lucide-react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-export type TService = {
-  name: string;
-  description: string;
-  price: number;
-  duration: number;
-  isDeleted: boolean;
-  _id?: string;
-};
-
-export function CreateProduct({ refetch }: { refetch: () => void }) {
+export function CreateProduct() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TService>();
-  const [createService, { error, isLoading }] = useCreateServiceMutation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  } = useForm<Product>();
+  const [CreateProduct, { isLoading }] = useCreateProductMutation();
+  const [open, setOpen] = useState(false);
 
-  if ((error as any)?.data?.message === "jwt expired") {
-    dispatch(logout());
-    navigate("/signin");
-  }
-
-  const onSubmit: SubmitHandler<TService> = async (data) => {
+  const onSubmit: SubmitHandler<Product> = async (data) => {
+    console.log(data);
     try {
-      data.isDeleted = false;
-      const res = await createService(data).unwrap();
+      const res = await CreateProduct(data).unwrap();
       if (res.success) {
         toast.success(res.message);
-        refetch();
+        setOpen(false);
       }
     } catch (err) {
       toast.error((err as any)?.data?.message || "Something went wrong");
@@ -56,38 +41,35 @@ export function CreateProduct({ refetch }: { refetch: () => void }) {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="flex items-center gap-2 text-white bg-primary">
+        <Button className="flex items-center gap-2 text-white bg-primary ">
           {" "}
-          <span>
-            <PlusCircleIcon />
-          </span>{" "}
-          Create Service
+          <BadgePlus /> Create New Product
         </Button>
       </DialogTrigger>
-      <DialogContent className=" max-w-[350px] md:max-w-[550px]  lg:max-w-[625px] bg-secondary   border border-white border-opacity-30">
+      <DialogContent className=" max-w-[380px] rounded-lg md:max-w-[625px] bg-secondary   border border-white border-opacity-30">
         <DialogHeader>
           <DialogTitle className="text-2xl font-medium text-primary">
-            Create a Service
+            Create New Product
           </DialogTitle>
           <DialogDescription className=" text-neutral-400">
-            Create a comprehensive service offering for CleanCarCo.
+            {/* Update comprehensive service offering for CleanCarCo. */}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid items-center w-full gap-4 py-4">
             <div className="flex flex-col space-y-4">
               <Label className="text-white" htmlFor="name">
-                Service Name :
+                Product Name :
               </Label>
               <Input
                 {...register("name", {
-                  required: "Service name is required",
+                  required: "Product name is required",
                 })}
                 type="text"
                 id="name"
-                placeholder="Name of your service"
+                placeholder="Name of your product"
                 className={`${errors.name ? "border-red-500" : ""}`}
               />
               {errors.name && (
@@ -115,6 +97,46 @@ export function CreateProduct({ refetch }: { refetch: () => void }) {
                 </span>
               )}
             </div>
+
+            <div className="flex flex-col space-y-4">
+              <Label className="text-white" htmlFor="description">
+                Category :
+              </Label>
+              <Input
+                type="text"
+                {...register("category", {
+                  required: "Category is required",
+                })}
+                id="category"
+                placeholder="Category"
+                className={`${errors.category ? "border-red-500" : ""}`}
+              />
+              {errors.category && (
+                <span className="text-sm text-red-500">
+                  {errors.category.message}
+                </span>
+              )}
+            </div>
+            <div className="flex flex-col space-y-4">
+              <Label className="text-white" htmlFor="description">
+                Stock Quantity :
+              </Label>
+              <Input
+                type="number"
+                {...register("stockQuantity", {
+                  required: "Stock Quantity is required",
+                  valueAsNumber: true,
+                })}
+                id="stockQuantity"
+                placeholder="Stock Quantity"
+                className={`${errors.stockQuantity ? "border-red-500" : ""}`}
+              />
+              {errors.stockQuantity && (
+                <span className="text-sm text-red-500">
+                  {errors.stockQuantity.message}
+                </span>
+              )}
+            </div>
             <div className="flex flex-col space-y-4">
               <Label className="text-white" htmlFor="price">
                 Price
@@ -136,22 +158,21 @@ export function CreateProduct({ refetch }: { refetch: () => void }) {
               )}
             </div>
             <div className="flex flex-col space-y-4">
-              <Label className="text-white" htmlFor="duration">
-                Duration (minutes)
+              <Label className="text-white" htmlFor="image">
+                Image
               </Label>
               <Input
-                type="number"
-                {...register("duration", {
-                  required: "Duration is required",
-                  valueAsNumber: true,
+                {...register("image", {
+                  required: "Image is required",
                 })}
-                id="duration"
-                placeholder="Duration"
-                className={`${errors.duration ? "border-red-500" : ""}`}
+                type="text"
+                id="image"
+                placeholder="Image Url"
+                className={`${errors.image ? "border-red-500" : ""}`}
               />
-              {errors.duration && (
+              {errors.image && (
                 <span className="text-sm text-red-500">
-                  {errors.duration.message}
+                  {errors.image.message}
                 </span>
               )}
             </div>
