@@ -4,8 +4,8 @@ import { TypewriterEffectSmoothDemo } from "./TypeEffect";
 
 const Hero = () => {
   return (
-    <>
-      <div className=" bg-third min-h-[calc(100vh-175px)] pt-10 lg:pt-0 px-4 md:px-8 flex justify-center items-center">
+    <div>
+      <div className="  min-h-[calc(100vh-175px)] pt-10 lg:pt-0 px-4 md:px-8 flex justify-center items-center">
         <div className="container mx-auto">
           <div className="flex flex-wrap -mx-4">
             <div className="w-full px-4 lg:w-5/12">
@@ -96,7 +96,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

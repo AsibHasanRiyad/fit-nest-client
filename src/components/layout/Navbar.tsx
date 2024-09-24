@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="container mx-auto bg-third">
+    <nav className="container mx-auto">
       <div className="flex flex-wrap items-center justify-between py-2 mx-auto">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} className="h-16" alt="Logo" />
