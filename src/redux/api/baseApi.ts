@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000/api/v1",
+  baseUrl: "https://fit-nest-server.vercel.app/api/v1",
   credentials: "include",
   // will add token while implementing authentication features
   // prepareHeaders: (headers, { getState }) => {

@@ -11,7 +11,7 @@ const FeaturedProducts = () => {
   const { data: products, isLoading } = useGetAllProductsQuery([
     { name: "limit", value: 6 },
   ]);
-  console.log(products);
+  // console.log(products);
   return (
     <section className="mt-10 ">
       <Header

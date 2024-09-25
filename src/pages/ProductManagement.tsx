@@ -15,7 +15,7 @@ import { CreateProduct } from "@/components/ProductManagement/CreateProduct";
 
 const ProductManagement = () => {
   const { data, isLoading } = useGetAllProductsQuery(undefined);
-  console.log(data);
+  // console.log(data);
   if (isLoading) {
     return <Loader />;
   }

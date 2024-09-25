@@ -31,7 +31,7 @@ export function UpdateProduct({ product }: { product: Product }) {
     try {
       const _id = product._id;
       const payload = { ...data, _id };
-      console.log(payload);
+      // console.log(payload);
       const res = await updateProduct(payload).unwrap();
       if (res.success) {
         toast.success(res.message);

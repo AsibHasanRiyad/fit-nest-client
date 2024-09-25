@@ -28,7 +28,7 @@ export function CreateProduct() {
   const [open, setOpen] = useState(false);
 
   const onSubmit: SubmitHandler<Product> = async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const res = await CreateProduct(data).unwrap();
       if (res.success) {

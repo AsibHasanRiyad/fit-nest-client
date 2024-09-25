@@ -52,7 +52,7 @@ const Checkout = () => {
 
     try {
       const res = await createOrder(orderData).unwrap();
-      console.log(res);
+      // console.log(res);
       if (res.success) {
         toast.success(res.message);
         navigate("/");
