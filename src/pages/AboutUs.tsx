@@ -29,21 +29,21 @@ const AboutUs = () => {
             >
               <motion.button
                 type="button"
-                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
+                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start bg-primary focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
                 id="tabs-with-card-item-4"
                 aria-selected="false"
                 data-hs-tab="#tabs-with-card-4"
                 aria-controls="tabs-with-card-4"
                 role="tab"
-                variants={fadeInWithDelay(0)}
+                variants={fadeInWithDelay(1.5)}
               >
-                <span className="flex gap-x-6">
-                  <Box className="w-28 mt-1.5 text-primary" />
+                <span className="flex items-center gap-x-6">
+                  <Box className="w-28 mt-1.5 text-third" />
                   <span className="grow">
-                    <span className="block text-lg font-semibold text-primary hs-tab-active:text-blue-600">
+                    <span className="block text-lg font-semibold text-third hs-tab-active:text-blue-600">
                       Our Vision
                     </span>
-                    <span className="block mt-1 text-secondary">
+                    <span className="block mt-1 text-third">
                       Our vision is to be the leading provider of fitness
                       accessories, known for our commitment to quality and
                       innovation. We aim to create a community where fitness
@@ -56,21 +56,21 @@ const AboutUs = () => {
 
               <motion.button
                 type="button"
-                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
+                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start bg-primary focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
                 id="tabs-with-card-item-3"
                 aria-selected="false"
                 data-hs-tab="#tabs-with-card-3"
                 aria-controls="tabs-with-card-3"
                 role="tab"
-                variants={fadeInWithDelay(0.5)}
+                variants={fadeInWithDelay(1)}
               >
-                <span className="flex gap-x-6">
-                  <SquareStack className="w-28 mt-1.5 text-primary" />
+                <span className="flex items-center gap-x-6">
+                  <SquareStack className="w-28 mt-1.5 text-third" />
                   <span className="grow">
-                    <span className="block text-lg font-semibold text-primary hs-tab-active:text-blue-600">
+                    <span className="block text-lg font-semibold text-third hs-tab-active:text-blue-600">
                       Our Mission
                     </span>
-                    <span className="block mt-1 text-secondary">
+                    <span className="block mt-1 text-third">
                       At Fitnest, our mission is to inspire individuals to lead
                       healthier lives through accessible fitness solutions. We
                       strive to innovate and deliver high-quality products that
@@ -83,21 +83,21 @@ const AboutUs = () => {
 
               <motion.button
                 type="button"
-                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
+                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start bg-primary focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
                 id="tabs-with-card-item-2"
                 aria-selected="false"
                 data-hs-tab="#tabs-with-card-2"
                 aria-controls="tabs-with-card-2"
                 role="tab"
-                variants={fadeInWithDelay(1)}
+                variants={fadeInWithDelay(0.5)}
               >
-                <span className="flex gap-x-6">
-                  <History className="w-28 mt-1.5 text-primary" />
+                <span className="flex items-center gap-x-6">
+                  <History className="w-28 mt-1.5 text-third" />
                   <span className="grow">
-                    <span className="block text-lg font-semibold text-primary hs-tab-active:text-blue-600">
+                    <span className="block text-lg font-semibold text-third hs-tab-active:text-blue-600">
                       Our History
                     </span>
-                    <span className="block mt-1 text-secondary">
+                    <span className="block mt-1 text-third">
                       Established in 2010, Fitnest began as a small initiative
                       to promote fitness awareness. Over the years, we've grown
                       into a trusted brand, dedicated to providing quality
@@ -110,21 +110,21 @@ const AboutUs = () => {
 
               <motion.button
                 type="button"
-                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start hover:bg-gray-200 focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
+                className="p-4 hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start bg-primary focus:outline-none focus:bg-gray-200 md:p-5 rounded-xl"
                 id="tabs-with-card-item-1"
                 aria-selected="true"
                 data-hs-tab="#tabs-with-card-1"
                 aria-controls="tabs-with-card-1"
                 role="tab"
-                variants={fadeInWithDelay(1.5)}
+                variants={fadeInWithDelay(0)}
               >
-                <span className="flex gap-x-6">
-                  <Search className="w-28 mt-1.5 text-primary" />
+                <span className="flex items-center gap-x-6">
+                  <Search className="w-28 mt-1.5 text-third" />
                   <span className="grow">
-                    <span className="block text-lg font-semibold text-primary hs-tab-active:text-blue-600">
+                    <span className="block text-lg font-semibold text-third hs-tab-active:text-blue-600">
                       About Fitnest
                     </span>
-                    <span className="block mt-1 text-secondary">
+                    <span className="block mt-1 text-third">
                       Founded with a passion for fitness and wellness, Fitnest
                       aims to empower individuals on their fitness journeys. Our
                       carefully curated range of accessories is designed to

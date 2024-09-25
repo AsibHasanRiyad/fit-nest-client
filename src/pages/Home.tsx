@@ -4,6 +4,7 @@ import Hero from "../components/Home/Hero";
 import Container from "../components/ui/Container";
 import FeaturedProducts from "@/components/Home/FeaturedProducts";
 import ImageParallax from "@/components/Home/ImageParallax";
+import Benefits from "@/components/Home/Benefits";
 
 // Animation variants for scrolling effects
 const fadeInVariants = (direction: string) => ({
@@ -41,6 +42,7 @@ const Home = () => {
         <FeaturedProducts />
       </motion.div>
       <ImageParallax />
+      <Benefits />
     </Container>
   );
 };

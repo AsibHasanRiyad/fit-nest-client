@@ -84,7 +84,7 @@ const Contact = () => {
                 What do you want to ask
               </h1>
 
-              <form className="mt-6">
+              <div className="mt-6">
                 <div className="flex-1">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Full Name
@@ -120,7 +120,7 @@ const Contact = () => {
                 <button className="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-md bg-primary focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   get in touch
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
