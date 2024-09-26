@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import Header from "../shared/Title";
 import { motion, useInView } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+
 const teamMembers = [
   {
     name: "Ahmed Omer",
@@ -31,7 +33,9 @@ const teamMembers = [
       "Patterson is a talented software engineer who loves building user-friendly applications. His passion for technology and innovation helps drive our platform forward.",
   },
 ];
+
 const OurTeam = () => {
+  const isSmallDevice = useMediaQuery({ query: "(max-width: 640px)" }); // Define your small device breakpoint
   const fadeInWithDelay = (delay: number) => ({
     hidden: { opacity: 0, x: -100 },
     show: { opacity: 1, x: 0, transition: { duration: 0.5, delay } },
@@ -54,8 +58,8 @@ const OurTeam = () => {
               <motion.div
                 key={index}
                 ref={ref}
-                variants={fadeInWithDelay(index * 0.3)} // Set delay based on index
-                animate={isInView ? "show" : "hidden"} // Trigger animation based on inView status
+                variants={fadeInWithDelay(index * 0.3)}
+                animate={isSmallDevice ? "show" : isInView ? "show" : "hidden"} // Disable animation for small devices
                 className="w-full max-w-xs text-center"
               >
                 <img

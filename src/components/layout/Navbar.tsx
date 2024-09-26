@@ -19,7 +19,7 @@ const Navbar = () => {
         <button
           onClick={toggleMobileMenu}
           type="button"
-          className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-400 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-600"
+          className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-400 rounded-lg lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-600"
           aria-controls="navbar-dropdown"
           aria-expanded={isMobileMenuOpen}
         >
@@ -43,15 +43,15 @@ const Navbar = () => {
         <div
           className={`${
             isMobileMenuOpen ? "block" : "hidden"
-          } w-full md:block md:w-auto md:mr-10`}
+          } w-full lg:block lg:w-auto lg:mr-10`}
           id="navbar-dropdown"
         >
-          <ul className="flex flex-col items-center p-4 mt-4 font-medium border rounded-lg md:p-0 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+          <ul className="flex flex-col items-center p-4 mt-4 font-medium border rounded-lg lg:p-0 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0">
             <li>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `block py-2 px-3 rounded md:p-0 ${
+                  `block py-2 px-3 rounded lg:p-0 ${
                     isActive ? "text-primary" : "text-secondary"
                   }`
                 }
@@ -64,7 +64,7 @@ const Navbar = () => {
               <NavLink
                 to="/products"
                 className={({ isActive }) =>
-                  `block py-2 px-3 rounded md:p-0 ${
+                  `block py-2 px-3 rounded lg:p-0 ${
                     isActive ? "text-primary" : "text-secondary"
                   }`
                 }
@@ -76,7 +76,7 @@ const Navbar = () => {
               <NavLink
                 to="/about-us"
                 className={({ isActive }) =>
-                  `block py-2 px-3 rounded md:p-0 ${
+                  `block py-2 px-3 rounded lg:p-0 ${
                     isActive ? "text-primary" : "text-secondary"
                   }`
                 }
@@ -88,7 +88,7 @@ const Navbar = () => {
               <NavLink
                 to="/product-management"
                 className={({ isActive }) =>
-                  `block py-2 px-3 rounded md:p-0 ${
+                  `block py-2 px-3 rounded lg:p-0 ${
                     isActive ? "text-primary" : "text-secondary"
                   }`
                 }
