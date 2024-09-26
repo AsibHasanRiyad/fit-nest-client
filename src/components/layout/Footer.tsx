@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logoWhite from "../../assets/logo_white.png";
 const Footer = () => {
   return (
@@ -27,15 +28,15 @@ const Footer = () => {
             <p className="font-semibold text-third ">Quick Link</p>
 
             <div className="flex flex-col items-start mt-5 space-y-2">
-              <a href="#" className="text-gray-200 ">
+              <Link to="/" className="text-gray-200 ">
                 Home
-              </a>
-              <a href="#" className="text-gray-200 ">
-                Who We Are
-              </a>
-              <a href="#" className="text-gray-200 ">
-                Our Philosophy
-              </a>
+              </Link>
+              <Link to="/products" className="text-gray-200 ">
+                Products
+              </Link>
+              <Link to="/about-us" className="text-gray-200 ">
+                About Us
+              </Link>
             </div>
           </div>
 
