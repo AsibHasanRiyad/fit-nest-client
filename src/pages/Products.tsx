@@ -29,7 +29,6 @@ const Products = () => {
   const category =
     queryParams.size !== 0 ? queryParams.get("category") || "" : null;
 
-  // Build the arguments dynamically, only include category if it's set
   const queryArgs = [
     { name: "limit", value: 8 },
     { name: "page", value: page },
