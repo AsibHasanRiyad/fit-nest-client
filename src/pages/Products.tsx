@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 
 const Products = () => {
   const [page, setPage] = useState(1);
-  const [sortBy, setSortBy] = useState("price");
+  const [sortBy, setSortBy] = useState("-createdAt");
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1000);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -33,7 +33,7 @@ const Products = () => {
   const queryArgs = [
     { name: "limit", value: 8 },
     { name: "page", value: page },
-    { name: "sort", value: sortBy || "price" },
+    { name: "sort", value: sortBy || "-createdAt" },
     { name: "minPrice", value: minPrice },
     { name: "maxPrice", value: maxPrice },
     { name: "searchTerm", value: searchTerm },

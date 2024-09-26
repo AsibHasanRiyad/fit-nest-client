@@ -12,10 +12,19 @@ import ProductTable from "@/components/ProductManagement/ProductTable";
 import { useGetAllProductsQuery } from "@/redux/api/ProductsApi";
 import { Product } from "@/types";
 import { CreateProduct } from "@/components/ProductManagement/CreateProduct";
+import { PaginationCard } from "@/components/shared/PaginationCard";
+import { useState } from "react";
 
 const ProductManagement = () => {
-  const { data, isLoading } = useGetAllProductsQuery(undefined);
-  // console.log(data);
+  const [page, setPage] = useState(1);
+  const { data, isLoading } = useGetAllProductsQuery([
+    { name: "page", value: page },
+    {
+      name: "limit",
+      value: 8,
+    },
+    { name: "sort", value: "-createdAt" },
+  ]);
   if (isLoading) {
     return <Loader />;
   }
@@ -45,6 +54,13 @@ const ProductManagement = () => {
           ))}
         </TableBody>
       </Table>
+      <div className="mt-10 mb-5 ">
+        <PaginationCard
+          currentPage={page}
+          totalPages={data?.data?.meta?.totalPage}
+          onPageChange={setPage}
+        />
+      </div>
     </div>
   );
 };
